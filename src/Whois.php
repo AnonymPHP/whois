@@ -9,6 +9,7 @@
 namespace Anonym;
 
 use InvalidArgumentException;
+
 /**
  * Class Whois
  * @package Anonym
@@ -31,9 +32,14 @@ class Whois
     private $server = 'whois.domain.com';
 
     /**
+     * @var string
+     */
+    protected $result;
+    /**
+     *
      * Construct
      *
-     * @param  string                   $domain Domain name
+     * @param  string $domain Domain name
      * @throws InvalidArgumentException If the domain is not valid
      */
     public function __construct($domain)
@@ -53,4 +59,31 @@ class Whois
             throw new InvalidArgumentException('Invalid domain');
         }
     }
+
+
+    /**
+     * Query DNS server
+     *
+     * @return bool
+     */
+    private function execute()
+    {
+        // Connect
+        if ($connection = fsockopen($this->server, 43)) {
+
+            // Query
+            fputs($connection, $this->domain . "\r\n");
+
+            // Store response
+            $this->result = '';
+            while (!feof($connection)) {
+                $this->result .= fgets($connection);
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
 }

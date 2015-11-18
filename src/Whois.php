@@ -8,8 +8,15 @@
 
 namespace Anonym;
 
-
+/**
+ * Class Whois
+ * @package Anonym
+ */
 class Whois
 {
 
+    public function __construct()
+    {
+
+    }
 }

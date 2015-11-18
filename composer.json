@@ -1,0 +1,33 @@
+{
+  "name": "anonym-php/whois",
+  "type": "library",
+  "keywords": [
+    "whois",
+    "anonym",
+    "query"
+  ],
+  "homepage": "https://gemframework.com",
+  "description": "Anonym Whois Component",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Vahit Şerif Sağlam",
+      "email": "vahit.serif119@gmail.com",
+      "homepage": "http://www.gemframework.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "src\\": ""
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}

@@ -35,6 +35,7 @@ class Whois
      * @var string
      */
     protected $result;
+
     /**
      *
      * Construct
@@ -86,4 +87,21 @@ class Whois
         return false;
     }
 
+    /**
+     * @return string
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    /**
+     * @param string $result
+     * @return $this
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+        return $this;
+    }
 }

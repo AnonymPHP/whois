@@ -8,6 +8,7 @@
 
 namespace Anonym;
 
+use InvalidArgumentException;
 /**
  * Class Whois
  * @package Anonym
@@ -15,8 +16,41 @@ namespace Anonym;
 class Whois
 {
 
-    public function __construct()
-    {
+    /**
+     * the domain url address
+     *
+     * @var string
+     */
+    protected $domain;
 
+    /**
+     * Whois resolver server
+     *
+     * @var string
+     */
+    private $server = 'whois.domain.com';
+
+    /**
+     * Construct
+     *
+     * @param  string                   $domain Domain name
+     * @throws InvalidArgumentException If the domain is not valid
+     */
+    public function __construct($domain)
+    {
+        // Is valid?
+        if (preg_match("/^([-a-z0-9]{2,100})\.([a-z\.]{2,8})$/i", $domain)) {
+
+            // Store
+            $this->domain = $domain;
+
+            // Run
+            $this->execute();
+
+        } else {
+
+            // Invalid domain
+            throw new InvalidArgumentException('Invalid domain');
+        }
     }
 }

@@ -3,6 +3,6 @@
 include "vendor/autoload.php";
 
 use Anonym\Whois;
-$whois = new Whois('http://kophack.com');
+$whois = new Whois('kophack.com');
 
-var_dump($whois);
+$whois->parseData();

@@ -88,6 +88,28 @@ class Whois
     }
 
     /**
+     * parse data
+     *
+     * @return array
+     */
+    public function parseData(){
+        $lines = explode("\n", $this->getResult());
+
+        $datas = [];
+
+        foreach($lines as $line){
+
+            if (preg_match_all("/(.*?):\s(.*+)/i",$line, $matches)) {
+                $name = $matches[1][0];
+                $value = $matches[2][0];
+                $datas[trim($name)] = trim($value);
+            }
+        }
+
+        return $datas;
+    }
+
+    /**
      * @return string
      */
     public function getResult()

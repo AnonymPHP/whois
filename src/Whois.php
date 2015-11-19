@@ -52,6 +52,9 @@ class Whois
      */
     public function __construct($domain)
     {
+
+        $domain = str_replace(['http://', 'www.', 'https://'], '', $domain);
+
         // Is valid?
         if (preg_match("/^([-a-z0-9]{2,100})\.([a-z\.]{2,8})$/i", $domain)) {
 

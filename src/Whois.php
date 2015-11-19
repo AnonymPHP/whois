@@ -37,6 +37,13 @@ class Whois
     protected $result;
 
     /**
+     * an array story  for parsed datas
+     *
+     * @var array
+     */
+    protected $datas;
+
+    /**
      *
      * Construct
      *
@@ -109,7 +116,7 @@ class Whois
                     $value = trim($value);
                     if ($value == '' || empty($value)) continue;
 
-                    $datas[trim($name)] = $value;
+                    $this->datas[trim($name)] = $value;
                 }
             } else {
                 if (preg_match_all("/(.*?):\s(.*+)/i", $line, $matches)) {
@@ -119,7 +126,7 @@ class Whois
                     $value = trim($value);
                     if ($value == '' || empty($value)) continue;
 
-                    $datas[trim($name)] = $value;
+                    $this->datas[trim($name)] = $value;
                 }
             }
             if (strstr($line, '====================================================')) {
@@ -128,9 +135,14 @@ class Whois
 
         }
 
-        return $datas;
+        return $this->datas;
     }
 
+    public function printByJson(){
+        header('Content-Type: application/json');
+
+        echo
+    }
     /**
      * @return string
      */

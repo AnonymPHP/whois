@@ -138,10 +138,15 @@ class Whois
         return $this->datas;
     }
 
+    /**
+     * prints datas as json
+     *
+     * @return void
+     */
     public function printByJson(){
         header('Content-Type: application/json');
 
-        echo
+        echo json_encode($this->datas);
     }
     /**
      * @return string

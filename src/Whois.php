@@ -92,22 +92,40 @@ class Whois
      *
      * @return array
      */
-    public function parseData(){
+    public function parseData()
+    {
         $lines = explode("\n", $this->getResult());
 
         $datas = [];
 
-        foreach($lines as $line){
+        $status = 0;
+        foreach ($lines as $line) {
 
-            if (preg_match_all("/(.*?):\s(.*+)/i",$line, $matches)) {
-                $name = $matches[1][0];
-                $value = $matches[2][0];
+            if ($status == 0) {
+                if (preg_match_all("/   (.*?):\s(.*+)/i", $line, $matches)) {
+                    $name = $matches[1][0];
+                    $value = $matches[2][0];
 
-                $value = trim($value);
-                if($value == '' || empty($value)) continue;
+                    $value = trim($value);
+                    if ($value == '' || empty($value)) continue;
 
-                $datas[trim($name)] = $value;
+                    $datas[trim($name)] = $value;
+                }
+            } else {
+                if (preg_match_all("/(.*?):\s(.*+)/i", $line, $matches)) {
+                    $name = $matches[1][0];
+                    $value = $matches[2][0];
+
+                    $value = trim($value);
+                    if ($value == '' || empty($value)) continue;
+
+                    $datas[trim($name)] = $value;
+                }
             }
+            if (strstr($line, '====================================================')) {
+                $status = 1;
+            }
+
         }
 
         return $datas;

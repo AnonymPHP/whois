@@ -102,7 +102,11 @@ class Whois
             if (preg_match_all("/(.*?):\s(.*+)/i",$line, $matches)) {
                 $name = $matches[1][0];
                 $value = $matches[2][0];
-                $datas[trim($name)] = trim($value);
+
+                $value = trim($value);
+                if($value == '' || empty($value)) continue;
+
+                $datas[trim($name)] = $value;
             }
         }
 

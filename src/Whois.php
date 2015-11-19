@@ -135,7 +135,24 @@ class Whois
 
         }
 
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDatas()
+    {
         return $this->datas;
+    }
+
+    /**
+     * @param array $datas
+     */
+    public function setDatas($datas)
+    {
+        $this->datas = $datas;
+        return $this;
     }
 
     /**

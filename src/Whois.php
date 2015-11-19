@@ -64,7 +64,7 @@ class Whois
         } else {
 
             // Invalid domain
-            throw new InvalidArgumentException('Invalid domain');
+            throw new InvalidArgumentException('Invalid domain, please input domain name like this : kophack.com');
         }
     }
 
